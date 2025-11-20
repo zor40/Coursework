@@ -31,11 +31,10 @@ public class Employee {
     }
 
     public void setDepartment(int department) {
-        if (department >= 1 && department <= 5) {
-            this.department = department;
-        } else {
+        if (department < 1 || department > 5) {
             throw new IllegalArgumentException("Отдел должен быть от 1 до 5");
         }
+        this.department = department;
     }
 
     public void setSalary(int salary) {
