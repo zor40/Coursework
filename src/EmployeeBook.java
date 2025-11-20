@@ -30,9 +30,15 @@ public class EmployeeBook {
                     tax = salary * 0.13;
                     break;
                 case "PROGRESSIVE":
-                    if (salary <= 150) tax = salary * 0.13;
-                    else if (salary <= 350) tax = salary * 0.17;
-                    else tax = salary * 0.21;
+                    if (salary <= 150) {
+                        tax = salary * 0.13;
+                    } else {
+                        if (salary > 350) {
+                            tax = salary * 0.21;
+                        } else {
+                            tax = salary * 0.17;
+                        }
+                    }
                     break;
                 default:
                     System.out.println("Неизвестная схема налогов");
@@ -65,7 +71,9 @@ public class EmployeeBook {
         int count = 0, i = 0;
         while (i < employees.length && count < employeeNumber) {
             Employee e = employees[i];
-            if (e == null) break;
+            if (e == null) {
+                break;
+            }
             if (e.getSalary() < wage) {
                 e.printShortInfo();
                 count++;
@@ -76,8 +84,9 @@ public class EmployeeBook {
 
     public boolean contains(Employee employee) {
         for (Employee e : employees) {
-            if (e == null) continue;
-            if (e.equals(employee)) return true;
+            if (e != null && e.equals(employee)) {
+                return true;
+            }
         }
         return false;
     }
@@ -94,8 +103,11 @@ public class EmployeeBook {
 
     public Employee getEmployeeById(int id) {
         for (Employee e : employees) {
-            if (e == null) continue;
-            if (e.getId() == id) return e;
+            if (e != null) {
+                if (e.getId() == id) {
+                    return e;
+                }
+            }
         }
         return null;
     }
